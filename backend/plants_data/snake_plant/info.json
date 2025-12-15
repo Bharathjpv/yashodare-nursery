@@ -1,0 +1,14 @@
+{
+    "name": "Snake Plant",
+    "scientific_name": "Dracaena trifasciata",
+    "description": "Dracaena trifasciata is a species of flowering plant in the family Asparagaceae, native to tropical West Africa from Nigeria east to the Congo.",
+    "price": "25.00",
+    "dos": [
+        "Allow soil to dry out completely between waterings.",
+        "Keep in indirect light (tolerates low light)."
+    ],
+    "donts": [
+        "Do not overwater (prone to root rot).",
+        "Avoid freezing temperatures."
+    ]
+}

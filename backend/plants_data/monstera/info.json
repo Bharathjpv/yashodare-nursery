@@ -1,0 +1,15 @@
+{
+    "name": "Monstera Deliciosa",
+    "scientific_name": "Monstera deliciosa",
+    "description": "Monstera deliciosa, the Swiss cheese plant, is a species of flowering plant native to tropical forests of southern Mexico, south to Panama.",
+    "price": "45.00",
+    "dos": [
+        "Provide bright, indirect light.",
+        "Water every 1-2 weeks, allowing soil to dry out between waterings.",
+        "Mist leaves occasionally to increase humidity."
+    ],
+    "donts": [
+        "Do not place in direct sunlight.",
+        "Avoid overwatering."
+    ]
+}
