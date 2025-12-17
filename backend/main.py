@@ -52,12 +52,19 @@ def get_plants():
                         data = json.load(f)
                         # Add image URL if image exists
                         # Assuming image is named 'image.png' or similar
-                        # We will look for an image file
-                        image_files = list(plant_dir.glob("image.*"))
+                        # We will look for all image files
+                        image_files = sorted(list(plant_dir.glob("image*.*")))
+                        data["image_urls"] = []
+                        
                         if image_files:
-                            # Use the first image found
-                            image_name = image_files[0].name
-                            data["image_url"] = f"/static/{plant_dir.name}/{image_name}"
+                            # Add all found images to image_urls
+                            for img in image_files:
+                                data["image_urls"].append(f"/static/{plant_dir.name}/{img.name}")
+                            
+                            # Use the first image as the primary image_url
+                            data["image_url"] = data["image_urls"][0]
+                        else:
+                             data["image_url"] = None
                         
                         data["id"] = plant_dir.name
                         plants.append(data)
@@ -78,9 +85,14 @@ def get_plant_detail(plant_id: str):
     with open(info_file, "r") as f:
         data = json.load(f)
     
-    image_files = list(plant_dir.glob("image.*"))
+    image_files = sorted(list(plant_dir.glob("image*.*")))
+    data["image_urls"] = []
+    
     if image_files:
-        image_name = image_files[0].name
-        data["image_url"] = f"/static/{plant_dir.name}/{image_name}"
+        for img in image_files:
+             data["image_urls"].append(f"/static/{plant_dir.name}/{img.name}")
+        data["image_url"] = data["image_urls"][0]
+    else:
+        data["image_url"] = None
         
     return data
