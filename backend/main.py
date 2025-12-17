@@ -12,6 +12,7 @@ app = FastAPI()
 origins = [
     "http://localhost:5173",
     "http://localhost:3000",
+    "https://yashodare-nursery.vercel.app"
 ]
 
 app.add_middleware(
@@ -50,10 +51,13 @@ def get_plants():
                 try:
                     with open(info_file, "r") as f:
                         data = json.load(f)
-                        # Add image URL if image exists
-                        # Assuming image is named 'image.png' or similar
-                        # We will look for all image files
-                        image_files = sorted(list(plant_dir.glob("image*.*")))
+                        # Look for all common image types
+                        image_extensions = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
+                        image_files = sorted([
+                            f for f in plant_dir.iterdir() 
+                            if f.is_file() and f.suffix.lower() in image_extensions
+                        ])
+                        
                         data["image_urls"] = []
                         
                         if image_files:
@@ -85,7 +89,12 @@ def get_plant_detail(plant_id: str):
     with open(info_file, "r") as f:
         data = json.load(f)
     
-    image_files = sorted(list(plant_dir.glob("image*.*")))
+    image_extensions = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
+    image_files = sorted([
+        f for f in plant_dir.iterdir() 
+        if f.is_file() and f.suffix.lower() in image_extensions
+    ])
+
     data["image_urls"] = []
     
     if image_files:

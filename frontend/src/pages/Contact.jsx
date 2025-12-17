@@ -3,15 +3,15 @@ import { Phone, Mail } from 'lucide-react';
 
 const Contact = () => {
     return (
-        <div className="container" style={{ padding: '6rem 20px', maxWidth: '800px' }}>
+        <div className="container section-padding" style={{ maxWidth: '800px' }}>
             <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                <h1 style={{ fontSize: '3.5rem', marginBottom: '1.5rem', color: 'var(--primary-color)' }}>Contact Us</h1>
+                <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', marginBottom: '1.5rem', color: 'var(--primary-color)' }}>Contact Us</h1>
                 <p style={{ fontSize: '1.2rem', color: '#666' }}>We'd love to hear from you. Get in touch via Phone, WhatsApp or Email.</p>
             </div>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem', alignItems: 'center' }}>
 
-                <div style={{ width: '100%', maxWidth: '500px', background: 'white', padding: '2rem', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+                <div style={{ width: '100%', maxWidth: '500px', background: 'white', padding: '2rem', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', display: 'flex', gap: '1.5rem', alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap' }}>
                     <div style={{ background: 'var(--light-green)', padding: '16px', borderRadius: '50%', color: 'var(--primary-color)', flexShrink: 0 }}>
                         <Phone size={32} />
                     </div>
@@ -26,14 +26,14 @@ const Contact = () => {
                     </div>
                 </div>
 
-                <div style={{ width: '100%', maxWidth: '500px', background: 'white', padding: '2rem', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+                <div style={{ width: '100%', maxWidth: '500px', background: 'white', padding: '2rem', borderRadius: '16px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', display: 'flex', gap: '1.5rem', alignItems: 'center', flexDirection: 'row', flexWrap: 'wrap' }}>
                     <div style={{ background: 'var(--light-green)', padding: '16px', borderRadius: '50%', color: 'var(--primary-color)', flexShrink: 0 }}>
                         <Mail size={32} />
                     </div>
                     <div>
                         <h3 style={{ marginBottom: '0.5rem', fontSize: '1.3rem' }}>Email</h3>
                         <p style={{ color: '#666', marginBottom: '0.5rem' }}>Send us your queries anytime.</p>
-                        <a href="mailto:yashodarenursery@gmail.com" style={{ fontSize: '1.1rem', fontWeight: 'bold', color: 'var(--primary-color)' }}>yashodarenursery@gmail.com</a>
+                        <a href="mailto:yashodarenursery@gmail.com" style={{ fontSize: '1.1rem', fontWeight: 'bold', color: 'var(--primary-color)', wordBreak: 'break-all' }}>yashodarenursery@gmail.com</a>
                     </div>
                 </div>
 

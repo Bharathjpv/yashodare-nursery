@@ -23,7 +23,7 @@ function App() {
             <Route path="/plants/:id" element={<PlantDetail />} />
           </Routes>
         </div>
-        <footer style={{ backgroundColor: '#1B4332', color: '#ecfdf5', padding: '4rem 0', marginTop: 'auto' }}>
+        <footer style={{ backgroundColor: '#1B4332', color: '#ecfdf5', marginTop: 'auto' }} className="section-padding">
           <div className="container" style={{ textAlign: 'center' }}>
             <h2 style={{ color: '#fff', marginBottom: '1rem', fontFamily: 'var(--font-heading)' }}>Yashodare Nursery</h2>
             <p style={{ opacity: 0.8, marginBottom: '2rem' }}>Cultivating nature for your home.</p>

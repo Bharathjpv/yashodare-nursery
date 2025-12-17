@@ -6,17 +6,17 @@ const Home = () => {
     return (
         <div>
             <section style={{
-                padding: '8rem 0',
+                padding: '6rem 0', // Reduced for better mobile fit, still spacious
                 background: 'linear-gradient(135deg, var(--light-green) 0%, #fff 100%)',
                 borderRadius: '0 0 40px 40px',
                 marginBottom: '4rem',
                 textAlign: 'center'
-            }}>
+            }} className="section-padding">
                 <div className="container">
-                    <h1 style={{ fontSize: '4rem', marginBottom: '1.5rem', color: 'var(--primary-color)' }}>
+                    <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', marginBottom: '1.5rem', color: 'var(--primary-color)' }}>
                         Bring Life into Your Space
                     </h1>
-                    <p style={{ fontSize: '1.25rem', color: '#4a7c59', maxWidth: '700px', margin: '0 auto 2.5rem', lineHeight: 1.6 }}>
+                    <p style={{ fontSize: 'clamp(1rem, 2vw, 1.25rem)', color: '#4a7c59', maxWidth: '700px', margin: '0 auto 2.5rem', lineHeight: 1.6 }}>
                         Yashodare Nursery offers a curated selection of exotic and native plants.
                         Grown with love, ready for your home.
                     </p>
@@ -27,8 +27,8 @@ const Home = () => {
             </section>
 
             <div className="container" style={{ marginBottom: '6rem' }}>
-                <h2 style={{ textAlign: 'center', marginBottom: '3rem', fontSize: '2.5rem' }}>The Yashodare Difference</h2>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+                <h2 style={{ textAlign: 'center', marginBottom: '3rem', fontSize: 'clamp(2rem, 4vw, 2.5rem)' }}>The Yashodare Difference</h2>
+                <div className="grid-responsive">
                     <div className="card" style={{ padding: '2.5rem', textAlign: 'center' }}>
                         <div style={{ color: 'var(--secondary-color)', marginBottom: '1rem' }}><Star size={40} /></div>
                         <h3 style={{ marginBottom: '1rem' }}>Hand-Picked Quality</h3>

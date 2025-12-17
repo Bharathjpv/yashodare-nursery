@@ -3,15 +3,15 @@ import { Leaf, Award, Users, Sprout } from 'lucide-react';
 
 const About = () => {
     return (
-        <div className="container" style={{ padding: '4rem 20px', maxWidth: '1000px' }}>
+        <div className="container section-padding" style={{ maxWidth: '1000px' }}>
             <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                <h1 style={{ fontSize: '3.5rem', marginBottom: '1.5rem', color: 'var(--primary-color)' }}>About Yashodare Nursery</h1>
-                <p style={{ fontSize: '1.2rem', color: '#666', maxWidth: '800px', margin: '0 auto', lineHeight: '1.8' }}>
+                <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', marginBottom: '1.5rem', color: 'var(--primary-color)' }}>About Yashodare Nursery</h1>
+                <p style={{ fontSize: '1.1rem', color: '#666', maxWidth: '800px', margin: '0 auto', lineHeight: '1.8' }}>
                     Cultivating a greener future, one plant at a time. We are passionate about bringing the beauty and tranquility of nature into your homes and lives.
                 </p>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem', marginBottom: '5rem' }}>
+            <div className="grid-responsive" style={{ marginBottom: '5rem' }}>
                 <div style={{ padding: '2rem', background: '#f8fafc', borderRadius: '16px' }}>
                     <div style={{ color: 'var(--primary-color)', marginBottom: '1rem' }}><Leaf size={40} /></div>
                     <h3 style={{ marginBottom: '1rem', fontSize: '1.5rem' }}>Our Mission</h3>

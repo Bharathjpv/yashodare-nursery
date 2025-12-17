@@ -17,24 +17,25 @@ const Catalog = () => {
     }, []);
 
     if (loading) return (
-        <div className="container" style={{ padding: '6rem 0', textAlign: 'center' }}>
+        <div className="container section-padding" style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '1.5rem', color: 'var(--primary-color)' }}>Loading our green friends...</div>
         </div>
     );
 
     return (
-        <div className="container" style={{ padding: '4rem 20px' }}>
+        <div className="container section-padding">
             <header style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                <h1 style={{ fontSize: '3rem', marginBottom: '1rem' }}>Our Collection</h1>
+                <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 3rem)', marginBottom: '1rem' }}>Our Collection</h1>
                 <p style={{ color: '#666' }}>Find the perfect plant for your space</p>
             </header>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '3rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '2rem' }}>
                 {plants.map(plant => (
                     <Link to={`/plants/${plant.id}`} key={plant.id} className="card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ height: '350px', overflow: 'hidden', backgroundColor: '#f4f4f4', position: 'relative' }}>
+                        <div style={{ height: '300px', overflow: 'hidden', backgroundColor: '#f4f4f4', position: 'relative' }}>
                             {plant.image_url ?
                                 <img
+                                    // src={`http://localhost:8000${plant.image_url}`}
                                     src={`https://yashodare-nursery.onrender.com${plant.image_url}`}
                                     alt={plant.name}
                                     style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
