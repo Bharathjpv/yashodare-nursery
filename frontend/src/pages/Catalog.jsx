@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchPlants } from '../api';
+import { fetchPlants, API_URL } from '../api';
 import { ArrowRight } from 'lucide-react';
 
 const Catalog = () => {
@@ -35,8 +35,7 @@ const Catalog = () => {
                         <div style={{ height: '300px', overflow: 'hidden', backgroundColor: '#f4f4f4', position: 'relative' }}>
                             {plant.image_url ?
                                 <img
-                                    // src={`http://localhost:8000${plant.image_url}`}
-                                    src={`https://yashodare-nursery.onrender.com${plant.image_url}`}
+                                    src={`${API_URL}${plant.image_url}`}
                                     alt={plant.name}
                                     style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
                                     onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}

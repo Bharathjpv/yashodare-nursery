@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { fetchPlantDetail } from '../api';
+import { fetchPlantDetail, API_URL } from '../api';
 import { Check, X, ArrowLeft } from 'lucide-react';
 
 const PlantDetail = () => {
@@ -36,8 +36,7 @@ const PlantDetail = () => {
                 <div className="sticky-desktop">
                     <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(45, 106, 79, 0.15)', backgroundColor: '#fff', marginBottom: '1rem' }}>
                         {plant.image_urls && plant.image_urls.length > 0 ? (
-                            // <img src={`http://localhost:8000${selectedImage || plant.image_urls[0]}`} alt={plant.name} style={{ width: '100%', height: 'auto', display: 'block' }} />
-                            <img src={`https://yashodare-nursery.onrender.com${selectedImage || plant.image_urls[0]}`} alt={plant.name} style={{ width: '100%', height: 'auto', display: 'block' }} />
+                            <img src={`${API_URL}${selectedImage || plant.image_urls[0]}`} alt={plant.name} style={{ width: '100%', height: 'auto', display: 'block' }} />
                         ) : (
                             <div style={{ padding: '2rem', textAlign: 'center', color: '#999' }}>No Image Available</div>
                         )}
@@ -59,8 +58,7 @@ const PlantDetail = () => {
                                         aspectRatio: '1'
                                     }}
                                 >
-                                    {/* <img src={`http://localhost:8000${img}`} alt={`${plant.name} view ${idx + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} /> */}
-                                    <img src={`https://yashodare-nursery.onrender.com${img}`} alt={`${plant.name} view ${idx + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                                    <img src={`${API_URL}${img}`} alt={`${plant.name} view ${idx + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                                 </div>
                             ))}
                         </div>

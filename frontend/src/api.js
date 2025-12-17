@@ -1,4 +1,4 @@
-export const API_URL = "http://localhost:8000";
+export const API_URL = "https://yashodare-nursery.onrender.com";
 
 export const fetchPlants = async () => {
     try {
