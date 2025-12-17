@@ -7,6 +7,7 @@ const PlantDetail = () => {
     const { id } = useParams();
     const [plant, setPlant] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [selectedImage, setSelectedImage] = useState(null);
 
     useEffect(() => {
         const getPlant = async () => {
@@ -33,18 +34,48 @@ const PlantDetail = () => {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '4rem', alignItems: 'start' }}>
                 <div style={{ position: 'sticky', top: '100px' }}>
-                    <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(45, 106, 79, 0.15)', backgroundColor: '#fff' }}>
-                        {plant.image_url && <img src={`http://localhost:8000${plant.image_url}`} alt={plant.name} style={{ width: '100%', height: 'auto', display: 'block' }} />}
+                    <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(45, 106, 79, 0.15)', backgroundColor: '#fff', marginBottom: '1rem' }}>
+                        {plant.image_urls && plant.image_urls.length > 0 ? (
+                            <img src={`http://localhost:8000${selectedImage || plant.image_urls[0]}`} alt={plant.name} style={{ width: '100%', height: 'auto', display: 'block' }} />
+                        ) : (
+                            <div style={{ padding: '2rem', textAlign: 'center', color: '#999' }}>No Image Available</div>
+                        )}
                     </div>
+
+                    {plant.image_urls && plant.image_urls.length > 1 && (
+                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }}>
+                            {plant.image_urls.map((img, idx) => (
+                                <div
+                                    key={idx}
+                                    onClick={() => setSelectedImage(img)}
+                                    style={{
+                                        borderRadius: '12px',
+                                        overflow: 'hidden',
+                                        cursor: 'pointer',
+                                        border: selectedImage === img || (!selectedImage && idx === 0) ? '2px solid var(--primary-color)' : '2px solid transparent',
+                                        opacity: selectedImage === img || (!selectedImage && idx === 0) ? 1 : 0.7,
+                                        transition: 'all 0.2s'
+                                    }}
+                                >
+                                    <img src={`http://localhost:8000${img}`} alt={`${plant.name} view ${idx + 1}`} style={{ width: '100%', height: '80px', objectFit: 'cover', display: 'block' }} />
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 <div>
                     <h1 style={{ fontSize: '3.5rem', marginBottom: '0.5rem', lineHeight: 1.1 }}>{plant.name}</h1>
                     <p style={{ fontSize: '1.2rem', color: '#888', fontStyle: 'italic', marginBottom: '2rem', fontFamily: 'serif' }}>{plant.scientific_name}</p>
 
-                    <div style={{ fontSize: '2.5rem', color: 'var(--primary-color)', fontWeight: 'bold', marginBottom: '2.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                        ${plant.price}
-                        <button className="btn" style={{ fontSize: '1rem', padding: '10px 25px' }}>Add to Cart</button>
+                    <div style={{ marginBottom: '2.5rem', background: '#f0fdf4', padding: '1.5rem', borderRadius: '16px', border: '1px solid #dcfce7' }}>
+                        <p style={{ color: '#166534', marginBottom: '1rem', fontSize: '1.1rem', fontWeight: '500' }}>
+                            To order and get price details, please contact us on WhatsApp:
+                        </p>
+                        <a href="https://wa.me/916363794454" target="_blank" rel="noopener noreferrer" className="btn" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', backgroundColor: '#25D366', color: '#fff' }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M16.95 7.05a1 1 0 0 0-1.41 0l-3.54 3.54a1 1 0 0 0 0 1.41l1.41 1.41a1 1 0 0 0 1.41 0l3.54-3.54a1 1 0 0 0 0-1.41z"></path><path d="M8 12h.01"></path><path d="M12 16h.01"></path></svg>
+                            Inquire on WhatsApp
+                        </a>
                     </div>
 
                     <div style={{ marginBottom: '3.5rem' }}>

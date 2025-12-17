@@ -35,7 +35,7 @@ const Catalog = () => {
                         <div style={{ height: '350px', overflow: 'hidden', backgroundColor: '#f4f4f4', position: 'relative' }}>
                             {plant.image_url ?
                                 <img
-                                    src={`http://localhost:8000${plant.image_url}`}
+                                    src={`https://yashodare-nursery.onrender.com${plant.image_url}`}
                                     alt={plant.name}
                                     style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s ease' }}
                                     onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
@@ -50,8 +50,7 @@ const Catalog = () => {
                             <p style={{ color: '#666', fontSize: '0.95rem', marginBottom: '1.5rem', flex: 1, lineHeight: '1.5' }}>
                                 {plant.description.substring(0, 100)}...
                             </p>
-                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto', borderTop: '1px solid #eee', paddingTop: '1rem' }}>
-                                <span style={{ fontSize: '1.3rem', fontWeight: 'bold', color: 'var(--primary-color)' }}>${plant.price}</span>
+                            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginTop: 'auto', borderTop: '1px solid #eee', paddingTop: '1rem' }}>
                                 <span style={{ fontSize: '0.9rem', color: 'var(--secondary-color)', display: 'flex', alignItems: 'center', gap: '5px', fontWeight: '600' }}>
                                     View Details <ArrowRight size={16} />
                                 </span>
