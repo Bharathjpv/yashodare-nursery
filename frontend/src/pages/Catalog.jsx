@@ -39,13 +39,13 @@ const Catalog = () => {
         <div className="container section-padding">
             <header style={{ textAlign: 'center', marginBottom: '2rem' }}>
                 <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 3rem)', marginBottom: '1rem' }}>Our Collection</h1>
-                <p style={{ color: '#666' }}>Find the perfect plant for your space</p>
+                <p style={{ color: 'var(--text-muted)' }}>Find the perfect plant for your space</p>
             </header>
 
             {/* Search Bar */}
             <div style={{ maxWidth: '600px', margin: '0 auto 4rem', position: 'relative' }}>
                 <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
-                    <Search size={20} style={{ position: 'absolute', left: '1rem', color: '#999' }} />
+                    <Search size={20} style={{ position: 'absolute', left: '1rem', color: 'var(--text-muted)' }} />
                     <input
                         type="text"
                         placeholder="Search for plants..."
@@ -57,10 +57,13 @@ const Catalog = () => {
                             width: '100%',
                             padding: '1rem 1rem 1rem 3rem',
                             borderRadius: '50px',
-                            border: '1px solid #ddd',
+                            border: '1px solid var(--border-color)',
+                            backgroundColor: 'var(--input-bg)',
+                            color: 'var(--text-dark)',
                             fontSize: '1.1rem',
                             outline: 'none',
-                            boxShadow: '0 4px 6px rgba(0,0,0,0.05)'
+                            boxShadow: '0 4px 6px var(--card-shadow)',
+                            transition: 'all 0.3s ease'
                         }}
                     />
                 </div>
@@ -71,14 +74,14 @@ const Catalog = () => {
                         top: '100%',
                         left: 0,
                         right: 0,
-                        background: 'white',
+                        background: 'var(--card-bg)',
                         borderRadius: '16px',
-                        boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+                        boxShadow: '0 10px 25px var(--card-shadow)',
                         zIndex: 10,
                         marginTop: '0.5rem',
                         listStyle: 'none',
                         overflow: 'hidden',
-                        border: '1px solid #eee'
+                        border: '1px solid var(--border-color)'
                     }}>
                         {suggestions.map((name, idx) => (
                             <li
@@ -87,15 +90,14 @@ const Catalog = () => {
                                     setSearchTerm(name);
                                     setShowSuggestions(false);
                                 }}
+                                className="suggestion-item"
                                 style={{
                                     padding: '1rem 1.5rem',
                                     cursor: 'pointer',
-                                    borderBottom: idx === suggestions.length - 1 ? 'none' : '1px solid #f5f5f5',
-                                    transition: 'background 0.2s',
-                                    textAlign: 'left'
+                                    borderBottom: idx === suggestions.length - 1 ? 'none' : '1px solid var(--border-color)',
+                                    textAlign: 'left',
+                                    color: 'var(--text-dark)'
                                 }}
-                                onMouseEnter={(e) => e.target.style.background = '#f9f9f9'}
-                                onMouseLeave={(e) => e.target.style.background = 'white'}
                             >
                                 {name}
                             </li>
@@ -107,7 +109,7 @@ const Catalog = () => {
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '2rem' }}>
                 {filteredPlants.map(plant => (
                     <Link to={`/plants/${plant.id}`} key={plant.id} className="card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
-                        <div style={{ height: '300px', overflow: 'hidden', backgroundColor: '#f4f4f4', position: 'relative' }}>
+                        <div style={{ height: '300px', overflow: 'hidden', backgroundColor: 'var(--light-green)', position: 'relative' }}>
                             {plant.image_url ?
                                 <img
                                     src={`${API_URL}${plant.image_url}`}
@@ -116,16 +118,16 @@ const Catalog = () => {
                                     onMouseEnter={(e) => e.target.style.transform = 'scale(1.05)'}
                                     onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
                                 /> :
-                                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#999' }}>No Image</div>
+                                <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)' }}>No Image</div>
                             }
                         </div>
                         <div style={{ padding: '1.5rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
-                            <div style={{ marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.75rem', color: '#999' }}>Plant</div>
-                            <h3 style={{ marginBottom: '0.8rem', fontSize: '1.4rem' }}>{plant.name}</h3>
-                            <p style={{ color: '#666', fontSize: '0.95rem', marginBottom: '1.5rem', flex: 1, lineHeight: '1.5' }}>
+                            <div style={{ marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '1px', fontSize: '0.75rem', color: 'var(--text-muted)' }}>Plant</div>
+                            <h3 style={{ marginBottom: '0.8rem', fontSize: '1.4rem', color: 'var(--primary-color)' }}>{plant.name}</h3>
+                            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: '1.5rem', flex: 1, lineHeight: '1.5' }}>
                                 {plant.description.substring(0, 100)}...
                             </p>
-                            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginTop: 'auto', borderTop: '1px solid #eee', paddingTop: '1rem' }}>
+                            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', marginTop: 'auto', borderTop: '1px solid var(--border-color)', paddingTop: '1rem' }}>
                                 <span style={{ fontSize: '0.9rem', color: 'var(--secondary-color)', display: 'flex', alignItems: 'center', gap: '5px', fontWeight: '600' }}>
                                     View Details <ArrowRight size={16} />
                                 </span>
@@ -136,7 +138,7 @@ const Catalog = () => {
             </div>
 
             {filteredPlants.length === 0 && (
-                <div style={{ textAlign: 'center', padding: '3rem', color: '#666' }}>
+                <div style={{ textAlign: 'center', padding: '3rem', color: 'var(--text-muted)' }}>
                     {searchTerm ? `No plants found matching "${searchTerm}"` : 'No plants found. Please check back later.'}
                 </div>
             )}
