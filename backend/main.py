@@ -76,6 +76,10 @@ def get_plants():
                         plants.append(data)
                 except Exception as e:
                     print(f"Error reading {info_file}: {e}")
+    
+    # Sort plants alphabetically by name
+    plants.sort(key=lambda x: x.get("name", "").lower())
+    
     return plants
 
 @app.get("/plants/{plant_id}")

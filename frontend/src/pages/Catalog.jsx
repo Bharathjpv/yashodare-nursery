@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchPlants, API_URL } from '../api';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Search } from 'lucide-react';
 
 const Catalog = () => {
     const [plants, setPlants] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [showSuggestions, setShowSuggestions] = useState(false);
 
     useEffect(() => {
         const getPlants = async () => {
@@ -16,6 +18,17 @@ const Catalog = () => {
         getPlants();
     }, []);
 
+    // Filter plants based on search term
+    const filteredPlants = plants.filter(plant =>
+        plant.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // Get suggestions based on search term
+    const suggestions = plants
+        .filter(plant => plant.name.toLowerCase().includes(searchTerm.toLowerCase()))
+        .map(plant => plant.name)
+        .slice(0, 5);
+
     if (loading) return (
         <div className="container section-padding" style={{ textAlign: 'center' }}>
             <div style={{ fontSize: '1.5rem', color: 'var(--primary-color)' }}>Loading our green friends...</div>
@@ -24,13 +37,75 @@ const Catalog = () => {
 
     return (
         <div className="container section-padding">
-            <header style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <header style={{ textAlign: 'center', marginBottom: '2rem' }}>
                 <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 3rem)', marginBottom: '1rem' }}>Our Collection</h1>
                 <p style={{ color: '#666' }}>Find the perfect plant for your space</p>
             </header>
 
+            {/* Search Bar */}
+            <div style={{ maxWidth: '600px', margin: '0 auto 4rem', position: 'relative' }}>
+                <div style={{ position: 'relative', display: 'flex', alignItems: 'center' }}>
+                    <Search size={20} style={{ position: 'absolute', left: '1rem', color: '#999' }} />
+                    <input
+                        type="text"
+                        placeholder="Search for plants..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                        onFocus={() => setShowSuggestions(true)}
+                        onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+                        style={{
+                            width: '100%',
+                            padding: '1rem 1rem 1rem 3rem',
+                            borderRadius: '50px',
+                            border: '1px solid #ddd',
+                            fontSize: '1.1rem',
+                            outline: 'none',
+                            boxShadow: '0 4px 6px rgba(0,0,0,0.05)'
+                        }}
+                    />
+                </div>
+
+                {showSuggestions && searchTerm && suggestions.length > 0 && (
+                    <ul style={{
+                        position: 'absolute',
+                        top: '100%',
+                        left: 0,
+                        right: 0,
+                        background: 'white',
+                        borderRadius: '16px',
+                        boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+                        zIndex: 10,
+                        marginTop: '0.5rem',
+                        listStyle: 'none',
+                        overflow: 'hidden',
+                        border: '1px solid #eee'
+                    }}>
+                        {suggestions.map((name, idx) => (
+                            <li
+                                key={idx}
+                                onClick={() => {
+                                    setSearchTerm(name);
+                                    setShowSuggestions(false);
+                                }}
+                                style={{
+                                    padding: '1rem 1.5rem',
+                                    cursor: 'pointer',
+                                    borderBottom: idx === suggestions.length - 1 ? 'none' : '1px solid #f5f5f5',
+                                    transition: 'background 0.2s',
+                                    textAlign: 'left'
+                                }}
+                                onMouseEnter={(e) => e.target.style.background = '#f9f9f9'}
+                                onMouseLeave={(e) => e.target.style.background = 'white'}
+                            >
+                                {name}
+                            </li>
+                        ))}
+                    </ul>
+                )}
+            </div>
+
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '2rem' }}>
-                {plants.map(plant => (
+                {filteredPlants.map(plant => (
                     <Link to={`/plants/${plant.id}`} key={plant.id} className="card" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column' }}>
                         <div style={{ height: '300px', overflow: 'hidden', backgroundColor: '#f4f4f4', position: 'relative' }}>
                             {plant.image_url ?
@@ -60,9 +135,9 @@ const Catalog = () => {
                 ))}
             </div>
 
-            {plants.length === 0 && (
+            {filteredPlants.length === 0 && (
                 <div style={{ textAlign: 'center', padding: '3rem', color: '#666' }}>
-                    No plants found. Please check back later.
+                    {searchTerm ? `No plants found matching "${searchTerm}"` : 'No plants found. Please check back later.'}
                 </div>
             )}
         </div>
