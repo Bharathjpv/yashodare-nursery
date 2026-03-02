@@ -30,56 +30,134 @@ const Navbar = () => {
     };
 
     return (
-        <nav style={{
-            padding: '1rem 0',
-            backgroundColor: 'var(--nav-bg)', // Use variable
-            backdropFilter: 'blur(10px)',
+        <nav className="glass-panel" style={{
+            padding: '1.25rem 0',
             position: 'sticky',
             top: 0,
             zIndex: 100,
-            borderBottom: '1px solid var(--border-color)', // Use variable
-            transition: 'background-color 0.3s ease, border-color 0.3s ease'
+            borderBottom: '1px solid var(--border-subtle)',
+            transition: 'all 0.4s ease',
         }}>
             <div className="container nav-content">
-                <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem', fontWeight: 'bold', fontSize: '1.4rem', color: 'var(--primary-color)', fontFamily: 'var(--font-heading)' }}>
-                    <img src={logo} alt="Yashodare Nursery" style={{ height: '40px', width: 'auto' }} />
-                    <span style={{ color: 'var(--primary-color)' }}>Yashodare Nursery</span>
+                <Link to="/" className="hover-lift" style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1rem',
+                    fontWeight: '700',
+                    fontSize: '1.5rem',
+                    color: 'var(--color-primary)',
+                    fontFamily: 'var(--font-heading)',
+                    textDecoration: 'none',
+                }}>
+                    <img src={logo} alt="Yashodare Nursery" style={{
+                        height: '45px',
+                        width: 'auto',
+                        borderRadius: '8px',
+                    }} />
+                    <span>Yashodare Nursery</span>
                 </Link>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '2.5rem' }}>
                     {/* Desktop Links */}
-                    <div className={`nav-links ${isOpen ? 'open' : ''}`} style={{ backgroundColor: isOpen ? 'var(--nav-bg)' : 'transparent' }}>
-                        <Link to="/" className="nav-link" onClick={() => setIsOpen(false)} style={{ color: 'var(--text-dark)' }}>Home</Link>
-                        <Link to="/about" className="nav-link" onClick={() => setIsOpen(false)} style={{ color: 'var(--text-dark)' }}>About Us</Link>
-                        <Link to="/catalog" className="nav-link" onClick={() => setIsOpen(false)} style={{ color: 'var(--text-dark)' }}>Catalog</Link>
-                        <Link to="/contact" className="nav-link" onClick={() => setIsOpen(false)} style={{ color: 'var(--text-dark)' }}>Contact Us</Link>
+                    <div className={`nav-links ${isOpen ? 'open' : ''}`}>
+                        <Link
+                            to="/"
+                            onClick={() => setIsOpen(false)}
+                            style={{
+                                color: 'var(--text-primary)',
+                                fontWeight: '500',
+                                fontSize: '1rem',
+                                transition: 'color 0.3s ease',
+                                padding: '0.5rem 0',
+                            }}
+                            onMouseEnter={(e) => e.target.style.color = 'var(--color-primary)'}
+                            onMouseLeave={(e) => e.target.style.color = 'var(--text-primary)'}
+                        >
+                            Home
+                        </Link>
+                        <Link
+                            to="/about"
+                            onClick={() => setIsOpen(false)}
+                            style={{
+                                color: 'var(--text-primary)',
+                                fontWeight: '500',
+                                fontSize: '1rem',
+                                transition: 'color 0.3s ease',
+                                padding: '0.5rem 0',
+                            }}
+                            onMouseEnter={(e) => e.target.style.color = 'var(--color-primary)'}
+                            onMouseLeave={(e) => e.target.style.color = 'var(--text-primary)'}
+                        >
+                            About Us
+                        </Link>
+                        <Link
+                            to="/catalog"
+                            onClick={() => setIsOpen(false)}
+                            style={{
+                                color: 'var(--text-primary)',
+                                fontWeight: '500',
+                                fontSize: '1rem',
+                                transition: 'color 0.3s ease',
+                                padding: '0.5rem 0',
+                            }}
+                            onMouseEnter={(e) => e.target.style.color = 'var(--color-primary)'}
+                            onMouseLeave={(e) => e.target.style.color = 'var(--text-primary)'}
+                        >
+                            Catalog
+                        </Link>
+                        <Link
+                            to="/contact"
+                            onClick={() => setIsOpen(false)}
+                            style={{
+                                color: 'var(--text-primary)',
+                                fontWeight: '500',
+                                fontSize: '1rem',
+                                transition: 'color 0.3s ease',
+                                padding: '0.5rem 0',
+                            }}
+                            onMouseEnter={(e) => e.target.style.color = 'var(--color-primary)'}
+                            onMouseLeave={(e) => e.target.style.color = 'var(--text-primary)'}
+                        >
+                            Contact Us
+                        </Link>
                     </div>
 
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
                         {/* Theme Toggle Button */}
                         <button
                             onClick={toggleTheme}
+                            className="hover-lift"
                             style={{
-                                background: 'var(--card-bg)',
-                                border: '1px solid var(--border-color)',
+                                background: 'transparent',
+                                border: '1px solid var(--border-subtle)',
                                 cursor: 'pointer',
-                                color: 'var(--text-dark)',
+                                color: 'var(--text-primary)',
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                width: '40px',
-                                height: '40px',
+                                width: '44px',
+                                height: '44px',
                                 borderRadius: '50%',
-                                boxShadow: '0 2px 8px var(--card-shadow)',
-                                transition: 'all 0.3s ease'
+                                transition: 'all 0.3s ease',
                             }}
                             aria-label="Toggle dark mode"
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.borderColor = 'var(--color-primary)';
+                                e.currentTarget.style.color = 'var(--color-primary)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.borderColor = 'var(--border-subtle)';
+                                e.currentTarget.style.color = 'var(--text-primary)';
+                            }}
                         >
-                            {isDarkMode ? <Sun size={20} color="#ffd700" /> : <Moon size={20} />}
+                            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
                         </button>
 
                         {/* Mobile Menu Button */}
-                        <button className="mobile-menu-btn" onClick={() => setIsOpen(!isOpen)} style={{ color: 'var(--primary-color)', marginLeft: '0.5rem' }}>
+                        <button
+                            className="mobile-menu-btn"
+                            onClick={() => setIsOpen(!isOpen)}
+                        >
                             {isOpen ? <X size={28} /> : <Menu size={28} />}
                         </button>
                     </div>
